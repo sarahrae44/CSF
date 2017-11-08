@@ -24,7 +24,16 @@
  * @since Hestia 1.0
  */
 
-if ( ! defined( 'ELEMENTOR_PARTNER_ID' ) ) {
+ add_filter( 'loop_shop_per_page', 'new_loop_shop_per_page', 20 );
+
+ function new_loop_shop_per_page( $cols ) {
+   // $cols contains the current number of products per page based on the value stored on Options -> Reading
+   // Return the number of products you wanna show per page.
+   $cols = 20;
+   return $cols;
+ }
+
+ if ( ! defined( 'ELEMENTOR_PARTNER_ID' ) ) {
 	define( 'ELEMENTOR_PARTNER_ID', 2112 );
 }
 
@@ -819,4 +828,3 @@ add_action( 'after_switch_theme', 'hestia_import_flagship_content', 0 );
  * Allow html tags in descriptions.
  */
 remove_filter( 'nav_menu_description', 'strip_tags' );
-
